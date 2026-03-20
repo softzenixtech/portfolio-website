@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Softzenix Tech</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0A2540;
+      color: white;
+    }
+
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 60px;
+    }
+
+    .logo {
+      font-size:24px;
+      font-weight:700;
+      letter-spacing:1px;
+    }
+
+    nav a {
+      margin-left:25px;
+      text-decoration:none;
+      color:#ccc;
+      transition:0.3s;
+    }
+
+    nav a:hover { color:white; }
+
+    .hero {
+      height:90vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:0 20px;
+    }
+
+    .hero h1 {
+      font-size:52px;
+      max-width:700px;
+      line-height:1.2;
+      background: linear-gradient(90deg, #3A86FF, #8338EC);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero p {
+      margin-top:20px;
+      color:#aaa;
+      font-size:18px;
+    }
+
+    .btn {
+      margin-top:30px;
+      padding:14px 30px;
+      border:none;
+      border-radius:30px;
+      background: linear-gradient(90deg, #3A86FF, #8338EC);
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn:hover {
+      transform:scale(1.05);
+    }
+
+    .section {
+      padding:80px 60px;
+    }
+
+    .section h2 {
+      text-align:center;
+      margin-bottom:40px;
+      font-size:32px;
+    }
+
+    .projects {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+      gap:25px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      padding:25px;
+      border-radius:16px;
+      transition:0.3s;
+    }
+
+    .card:hover {
+      transform:translateY(-8px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .card h3 {
+      margin-bottom:10px;
+    }
+
+    .about {
+      max-width:800px;
+      margin:auto;
+      text-align:center;
+      color:#ccc;
+      line-height:1.6;
+    }
+
+    .contact {
+      text-align:center;
+      font-size:18px;
+    }
+
+    footer {
+      text-align:center;
+      padding:20px;
+      color:#777;
+      font-size:14px;
+    }
+
+    @media(max-width:768px){
+      header {padding:20px;}
+      .section {padding:60px 20px;}
+      .hero h1 {font-size:36px;}
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Softzenix</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>We Build Modern Software That Grows Your Business</h1>
+  <p>Clean, scalable and high-performance digital solutions</p>
+  <button class="btn">View Work</button>
+</section>
+
+<section class="section" id="about">
+  <h2>About Us</h2>
+  <p class="about">
+    Softzenix Tech is focused on building modern, scalable and high-quality software solutions. We help startups and businesses grow with clean design and powerful technology.
+  </p>
+</section>
+
+<section class="section" id="projects">
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="card">
+      <h3>Business Website</h3>
+      <p>Modern responsive website built for local business.</p>
+    </div>
+    <div class="card">
+      <h3>SaaS Dashboard</h3>
+      <p>Clean UI dashboard with analytics and user management.</p>
+    </div>
+    <div class="card">
+      <h3>Invoice Tool</h3>
+      <p>Simple SaaS app for generating invoices quickly.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <h2>Contact</h2>
+  <p class="contact">softzenixtech@gmail.com</p>
+</section>
+
+<footer>
+  <p>© 2026 Softzenix Tech. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
