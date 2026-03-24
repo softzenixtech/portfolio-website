@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog | Softzenix Tech — Engineering, Design & SaaS Insights</title>
+  <meta name="description" content="The Softzenix Tech blog — practical insights on web development, SaaS architecture, UI/UX design, and building digital products that grow businesses."/>
+  <meta name="keywords" content="Softzenix Tech blog, web development articles, SaaS architecture, UI UX insights, software engineering blog, tech startup blog"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://softzenixtech.com/blog.html"/>
+  <meta property="og:title" content="Blog | Softzenix Tech"/>
+  <meta property="og:description" content="Engineering, design, and product insights from the Softzenix Tech team."/>
+  <meta property="og:url" content="https://softzenixtech.com/blog.html"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%233A86FF'/><stop offset='100%25' stop-color='%238338EC'/></linearGradient></defs><rect width='100' height='100' rx='20' fill='url(%23g)'/><text y='.9em' font-size='70' x='12'>⚡</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    /* ── BLOG-SPECIFIC ── */
+
+    /* Blog Layout */
+    .blog-layout{padding:70px 0 110px;}
+    .blog-grid-main{display:grid;grid-template-columns:1fr 340px;gap:60px;align-items:start;}
+
+    /* Featured Post */
+    .featured-post{background:var(--bg-card);border:1px solid var(--border);border-radius:24px;overflow:hidden;margin-bottom:40px;transition:border-color var(--dur),transform var(--dur);}
+    .featured-post:hover{border-color:var(--border-glow);transform:translateY(-3px);}
+    .featured-thumb{height:320px;display:flex;align-items:center;justify-content:center;font-size:6rem;position:relative;overflow:hidden;}
+    .featured-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,24,46,.8),transparent 50%);}
+    .featured-post-body{padding:36px;}
+    .post-meta{display:flex;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap;}
+    .post-cat{padding:4px 12px;border-radius:99px;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+    .post-date{font-size:.8rem;color:var(--text-faint);}
+    .post-readtime{font-size:.8rem;color:var(--text-faint);}
+    .featured-post-body h2{font-family:var(--font-display);font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:800;line-height:1.22;margin-bottom:14px;}
+    .featured-post-body h2 a{transition:color var(--dur);}
+    .featured-post-body h2 a:hover{color:var(--blue);}
+    .featured-post-body p{font-size:.93rem;color:var(--text-muted);line-height:1.75;margin-bottom:24px;}
+    .post-author{display:flex;align-items:center;gap:12px;}
+    .post-author-avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:1rem;}
+    .post-author-name{font-family:var(--font-display);font-size:.88rem;font-weight:700;}
+    .post-author-role{font-size:.75rem;color:var(--text-faint);}
+
+    /* Post Cards Grid */
+    .posts-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    .post-card{background:var(--bg-card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:transform var(--dur),border-color var(--dur);}
+    .post-card:hover{transform:translateY(-4px);border-color:var(--border-glow);}
+    .post-card-thumb{height:140px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden;}
+    .post-card-body{padding:22px;}
+    .post-card-body h3{font-family:var(--font-display);font-size:1rem;font-weight:700;line-height:1.3;margin-bottom:10px;}
+    .post-card-body h3 a{transition:color var(--dur);}
+    .post-card-body h3 a:hover{color:var(--blue);}
+    .post-card-body p{font-size:.82rem;color:var(--text-muted);line-height:1.68;margin-bottom:14px;}
+    .post-read-link{font-size:.82rem;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:4px;transition:gap var(--dur);}
+    .post-read-link:hover{gap:8px;}
+
+    /* Sidebar */
+    .sidebar{display:flex;flex-direction:column;gap:28px;}
+    .sidebar-widget{background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:28px;}
+    .sidebar-widget h3{font-family:var(--font-display);font-size:.95rem;font-weight:700;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+    .sidebar-cats{display:flex;flex-direction:column;gap:10px;}
+    .sidebar-cat{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-radius:10px;font-size:.875rem;color:var(--text-muted);transition:background var(--dur),color var(--dur);cursor:pointer;}
+    .sidebar-cat:hover{background:rgba(58,134,255,.08);color:var(--blue);}
+    .sidebar-cat-count{padding:2px 8px;background:var(--input-bg);border-radius:99px;font-size:.72rem;font-weight:600;}
+    .sidebar-posts{display:flex;flex-direction:column;gap:16px;}
+    .sidebar-post{display:flex;gap:12px;}
+    .sidebar-post-thumb{width:52px;height:52px;border-radius:10px;display:grid;place-items:center;font-size:1.4rem;flex-shrink:0;}
+    .sidebar-post-title{font-family:var(--font-display);font-size:.85rem;font-weight:700;line-height:1.3;margin-bottom:4px;}
+    .sidebar-post-title a:hover{color:var(--blue);}
+    .sidebar-post-meta{font-size:.72rem;color:var(--text-faint);}
+    .newsletter-form{display:flex;flex-direction:column;gap:12px;}
+    .newsletter-form input{padding:12px 14px;background:var(--input-bg);border:1px solid var(--border);border-radius:10px;font-family:var(--font-body);font-size:.88rem;color:var(--text-primary);outline:none;transition:border-color var(--dur);}
+    .newsletter-form input:focus{border-color:var(--blue);}
+    .newsletter-form button{padding:12px;background:var(--grad);border-radius:10px;font-size:.88rem;font-weight:600;color:#fff;transition:opacity var(--dur);}
+    .newsletter-form button:hover{opacity:.88;}
+    .tag-cloud{display:flex;flex-wrap:wrap;gap:8px;}
+
+    /* Categories tabs */
+    .categories-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px;}
+    .cat-pill{padding:7px 18px;border-radius:99px;font-size:.82rem;font-weight:600;background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);cursor:pointer;transition:all var(--dur);}
+    .cat-pill.active,.cat-pill:hover{background:var(--grad);border-color:transparent;color:#fff;}
+
+    /* Responsive */
+    @media(max-width:1024px){.blog-grid-main{grid-template-columns:1fr;}.sidebar{order:2;}}
+    @media(max-width:768px){.posts-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<header>
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Softzenix Tech Home"><div class="logo-icon" aria-hidden="true">⚡</div><span>Softzenix Tech</span></a>
+    <ul class="nav-links" role="menubar">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="contact.html" class="nav-cta">Get Started</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="projects.html">Projects</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="page-hero" aria-label="Blog page hero">
+  <div class="hero-glow glow-1" aria-hidden="true"></div>
+  <div class="hero-glow glow-2" aria-hidden="true"></div>
+  <div class="container page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> / <span>Blog</span></nav>
+    <p class="section-label">Insights & Ideas</p>
+    <h1>Engineering, Design &<br><span class="gradient-text">SaaS Thinking</span></h1>
+    <p>Practical insights from the Softzenix Tech team — architecture decisions, design principles, and the lessons we've learned building 120+ digital products.</p>
+  </div>
+</section>
+
+<!-- BLOG CONTENT -->
+<div class="blog-layout">
+  <div class="container">
+
+    <!-- Category Filter -->
+    <div class="categories-bar" role="group" aria-label="Filter by category">
+      <button class="cat-pill active">All Posts</button>
+      <button class="cat-pill">Engineering</button>
+      <button class="cat-pill">Design</button>
+      <button class="cat-pill">SaaS</button>
+      <button class="cat-pill">Product</button>
+      <button class="cat-pill">DevOps</button>
+    </div>
+
+    <div class="blog-grid-main">
+      <!-- Main Column -->
+      <div>
+        <!-- Featured Post -->
+        <article class="featured-post reveal" aria-label="Featured blog post">
+          <div class="featured-thumb" style="background:linear-gradient(135deg,#060f1e,#0d2040);" role="img" aria-label="SaaS architecture illustration">🏗️</div>
+          <div class="featured-post-body">
+            <div class="post-meta">
+              <span class="post-cat pill pill-blue">Engineering</span>
+              <span class="post-date">March 12, 2025</span>
+              <span class="post-readtime">· 12 min read</span>
+            </div>
+            <h2><a href="#">How We Architected a SaaS for 10,000 Concurrent Users — Without Over-Engineering It</a></h2>
+            <p>When FlowDesk came to us, they wanted to handle 10k concurrent users by launch. We could have thrown microservices, Kubernetes, and event sourcing at the problem from day one. We didn't. Here's the incremental architecture approach that let us ship fast and scale confidently.</p>
+            <div class="post-author">
+              <div class="post-author-avatar" style="background:rgba(58,134,255,.12);" aria-hidden="true">👨‍💻</div>
+              <div><div class="post-author-name">Aryan Mehta</div><div class="post-author-role">Co-Founder & CEO</div></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Posts Grid -->
+        <div class="posts-grid" role="list">
+          <article class="post-card reveal" role="listitem">
+            <div class="post-card-thumb" style="background:linear-gradient(135deg,#0d1f2a,#0a2a3a);" aria-hidden="true">🎨</div>
+            <div class="post-card-body">
+              <div class="post-meta" style="margin-bottom:10px;">
+                <span class="post-cat pill pill-cyan" style="font-size:.65rem;padding:3px 10px;">Design</span>
+                <span class="post-date">Feb 28, 2025</span>
+              </div>
+              <h3><a href="#">The 5 Design System Mistakes That Slow Your Team Down</a></h3>
+              <p>After building 20+ design systems, we've seen the same five mistakes repeat. Here's how to avoid them from the start.</p>
+              <a href="#" class="post-read-link">Read Article →</a>
+            </div>
+          </article>
+
+          <article class="post-card reveal reveal-delay-1" role="listitem">
+            <div class="post-card-thumb" style="background:linear-gradient(135deg,#100828,#1a1045);" aria-hidden="true">💰</div>
+            <div class="post-card-body">
+              <div class="post-meta" style="margin-bottom:10px;">
+                <span class="post-cat pill pill-purple" style="font-size:.65rem;padding:3px 10px;">SaaS</span>
+                <span class="post-date">Feb 14, 2025</span>
+              </div>
+              <h3><a href="#">Stripe Billing for SaaS: Flat-Rate vs Usage-Based vs Hybrid</a></h3>
+              <p>Choosing the wrong billing model early can cost you churn, revenue, and engineering hours. We break down each approach.</p>
+              <a href="#" class="post-read-link">Read Article →</a>
+            </div>
+          </article>
+
+          <article class="post-card reveal" role="listitem">
+            <div class="post-card-thumb" style="background:linear-gradient(135deg,#071a0e,#0a2a18);" aria-hidden="true">⚡</div>
+            <div class="post-card-body">
+              <div class="post-meta" style="margin-bottom:10px;">
+                <span class="post-cat pill pill-blue" style="font-size:.65rem;padding:3px 10px;">Engineering</span>
+                <span class="post-date">Jan 30, 2025</span>
+              </div>
+              <h3><a href="#">Next.js 15 for Production: What's Actually Worth Using</a></h3>
+              <p>Not every new feature deserves immediate adoption. Here's our honest take on Next.js 15's additions after shipping two production apps with it.</p>
+              <a href="#" class="post-read-link">Read Article →</a>
+            </div>
+          </article>
+
+          <article class="post-card reveal reveal-delay-1" role="listitem">
+            <div class="post-card-thumb" style="background:linear-gradient(135deg,#1a1200,#2a1f00);" aria-hidden="true">📋</div>
+            <div class="post-card-body">
+              <div class="post-meta" style="margin-bottom:10px;">
+                <span class="post-cat pill pill-amber" style="font-size:.65rem;padding:3px 10px;">Product</span>
+                <span class="post-date">Jan 15, 2025</span>
+              </div>
+              <h3><a href="#">Why Your MVP Should Be Embarrassing (And Why Ours Always Are)</a></h3>
+              <p>The clients most nervous about shipping early are usually the ones most grateful six months later. Here's why speed wins.</p>
+              <a href="#" class="post-read-link">Read Article →</a>
+            </div>
+          </article>
+
+          <article class="post-card reveal" role="listitem">
+            <div class="post-card-thumb" style="background:linear-gradient(135deg,#0d1828,#0d1f38);" aria-hidden="true">🔐</div>
+            <div class="post-card-body">
+              <div class="post-meta" style="margin-bottom:10px;">
+                <span class="post-cat pill pill-blue" style="font-size:.65rem;padding:3px 10px;">Engineering</span>
+                <span class="post-date">Dec 20, 2024</span>
+              </div>
+              <h3><a href="#">Zero-Trust Authentication for SaaS: A Practical Implementation Guide</a></h3>
+              <p>OAuth 2.0, JWTs, refresh token rotation, and anomaly detection — implemented step by step using Node.js and Redis.</p>
+              <a href="#" class="post-read-link">Read Article →</a>
+            </div>
+          </article>
+
+          <article class="post-card reveal reveal-delay-1" role="listitem">
+            <div class="post-card-thumb" style="background:linear-gradient(135deg,#071814,#0a2820);" aria-hidden="true">🚢</div>
+            <div class="post-card-body">
+              <div class="post-meta" style="margin-bottom:10px;">
+                <span class="post-cat pill" style="background:rgba(58,134,255,.1);border:1px solid rgba(58,134,255,.2);color:var(--blue);font-size:.65rem;padding:3px 10px;">DevOps</span>
+                <span class="post-date">Dec 5, 2024</span>
+              </div>
+              <h3><a href="#">Zero-Downtime Deployments on AWS: Our Production Playbook</a></h3>
+              <p>Blue-green deployments, feature flags, and rollback strategies that have saved us (and our clients) from production disasters.</p>
+              <a href="#" class="post-read-link">Read Article →</a>
+            </div>
+          </article>
+        </div>
+
+        <!-- Load More -->
+        <div style="text-align:center;margin-top:48px;">
+          <button class="btn-secondary" id="loadMoreBtn" onclick="this.textContent='No more posts'; this.disabled=true;" aria-label="Load more articles">Load More Articles</button>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar" aria-label="Blog sidebar">
+
+        <!-- Newsletter -->
+        <div class="sidebar-widget reveal">
+          <h3>📬 Stay in the Loop</h3>
+          <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:16px;line-height:1.65;">One email per week — practical engineering and design insights, no fluff. Join 3,200+ readers.</p>
+          <form class="newsletter-form" id="newsletterForm" novalidate aria-label="Newsletter signup">
+            <input type="email" placeholder="your@email.com" required aria-label="Email address"/>
+            <button type="submit">Subscribe →</button>
+          </form>
+        </div>
+
+        <!-- Categories -->
+        <div class="sidebar-widget reveal reveal-delay-1">
+          <h3>📂 Categories</h3>
+          <div class="sidebar-cats" role="list">
+            <div class="sidebar-cat" role="listitem" tabindex="0">Engineering <span class="sidebar-cat-count">18</span></div>
+            <div class="sidebar-cat" role="listitem" tabindex="0">Design <span class="sidebar-cat-count">12</span></div>
+            <div class="sidebar-cat" role="listitem" tabindex="0">SaaS <span class="sidebar-cat-count">9</span></div>
+            <div class="sidebar-cat" role="listitem" tabindex="0">Product <span class="sidebar-cat-count">7</span></div>
+            <div class="sidebar-cat" role="listitem" tabindex="0">DevOps <span class="sidebar-cat-count">6</span></div>
+          </div>
+        </div>
+
+        <!-- Popular Posts -->
+        <div class="sidebar-widget reveal reveal-delay-2">
+          <h3>🔥 Most Popular</h3>
+          <div class="sidebar-posts" role="list">
+            <div class="sidebar-post" role="listitem">
+              <div class="sidebar-post-thumb" style="background:rgba(58,134,255,.12);" aria-hidden="true">🏗️</div>
+              <div>
+                <div class="sidebar-post-title"><a href="#">SaaS for 10,000 Concurrent Users</a></div>
+                <div class="sidebar-post-meta">12 min · 8.4k views</div>
+              </div>
+            </div>
+            <div class="sidebar-post" role="listitem">
+              <div class="sidebar-post-thumb" style="background:rgba(6,214,160,.12);" aria-hidden="true">🎨</div>
+              <div>
+                <div class="sidebar-post-title"><a href="#">5 Design System Mistakes</a></div>
+                <div class="sidebar-post-meta">8 min · 5.2k views</div>
+              </div>
+            </div>
+            <div class="sidebar-post" role="listitem">
+              <div class="sidebar-post-thumb" style="background:rgba(131,56,236,.12);" aria-hidden="true">💰</div>
+              <div>
+                <div class="sidebar-post-title"><a href="#">Stripe Billing: Flat vs Usage</a></div>
+                <div class="sidebar-post-meta">10 min · 4.8k views</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="sidebar-widget reveal reveal-delay-3">
+          <h3>🏷️ Tags</h3>
+          <div class="tag-cloud" role="list">
+            <span class="tag" role="listitem">React</span>
+            <span class="tag" role="listitem">Next.js</span>
+            <span class="tag" role="listitem">Node.js</span>
+            <span class="tag" role="listitem">SaaS</span>
+            <span class="tag" role="listitem">AWS</span>
+            <span class="tag" role="listitem">Figma</span>
+            <span class="tag" role="listitem">TypeScript</span>
+            <span class="tag" role="listitem">PostgreSQL</span>
+            <span class="tag" role="listitem">CI/CD</span>
+            <span class="tag" role="listitem">UX Research</span>
+            <span class="tag" role="listitem">Design Systems</span>
+            <span class="tag" role="listitem">Performance</span>
+          </div>
+        </div>
+
+        <!-- CTA Card -->
+        <div style="background:var(--grad);border-radius:18px;padding:28px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:12px;" aria-hidden="true">💬</div>
+          <div style="font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:10px;">Have a project in mind?</div>
+          <p style="font-size:.85rem;color:rgba(255,255,255,.75);margin-bottom:18px;line-height:1.65;">Let's talk about how we can help you build and grow.</p>
+          <a href="contact.html" style="display:block;padding:11px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:10px;font-size:.88rem;font-weight:600;color:#fff;transition:background var(--dur);" onmouseover="this.style.background='rgba(255,255,255,.25)'" onmouseout="this.style.background='rgba(255,255,255,.15)'">Get in Touch →</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section" aria-label="Call to action">
+  <div class="container" style="position:relative;z-index:1;">
+    <p class="section-label" style="justify-content:center;">Work With Us</p>
+    <h2>Enjoyed the Content?<br><span class="gradient-text">Let's Build Together.</span></h2>
+    <p>Reading is great, but building is better. If any of these posts resonated, let's see how we can apply these ideas to your product.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn-primary">Start a Project →</a>
+      <a href="projects.html" class="btn-secondary">See Our Portfolio</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" aria-label="Softzenix Tech"><div class="logo-icon" aria-hidden="true">⚡</div><span>Softzenix Tech</span></a>
+        <p>Building modern, scalable digital solutions that help ambitious businesses grow faster and smarter.</p>
+        <div class="footer-social" aria-label="Social media">
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter">𝕏</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">in</a>
+          <a href="https://github.com" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">gh</a>
+          <a href="mailto:softzenixtech@gmail.com" class="social-btn" aria-label="Email">✉</a>
+        </div>
+      </div>
+      <nav class="footer-col" aria-label="Company"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+      <nav class="footer-col" aria-label="Services"><h4>Services</h4><ul><li><a href="services.html">Web Development</a></li><li><a href="services.html">SaaS Applications</a></li><li><a href="services.html">UI/UX Design</a></li><li><a href="services.html">API Development</a></li><li><a href="services.html">Consulting</a></li></ul></nav>
+      <nav class="footer-col" aria-label="Contact"><h4>Get In Touch</h4><ul><li><a href="mailto:softzenixtech@gmail.com">softzenixtech@gmail.com</a></li><li><a href="https://softzenixtech.com">softzenixtech.com</a></li><li><a href="contact.html">Get a Quote</a></li></ul></nav>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> <span>Softzenix Tech</span>. All rights reserved.</p>
+      <p>Built with ❤️ for ambitious businesses worldwide.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// Category pill filter
+document.querySelectorAll('.cat-pill').forEach(p => {
+  p.addEventListener('click',()=>{ document.querySelectorAll('.cat-pill').forEach(b=>b.classList.remove('active')); p.classList.add('active'); });
+});
+// Newsletter form
+document.getElementById('newsletterForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.textContent = '✓ Subscribed!';
+  btn.style.background = 'rgba(6,214,160,.2)';
+  btn.disabled = true;
+  e.target.querySelector('input').disabled = true;
+});
+</script>
+</body>
+</html>

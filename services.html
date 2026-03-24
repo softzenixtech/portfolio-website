@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services | Softzenix Tech — Web Dev, SaaS, UI/UX Design</title>
+  <meta name="description" content="Explore Softzenix Tech's services: web development, SaaS application building, UI/UX design, API development, and tech consulting for startups and enterprises."/>
+  <meta name="keywords" content="web development services, SaaS development, UI UX design agency, API development, tech consulting, Softzenix Tech services"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://softzenixtech.com/services.html"/>
+  <meta property="og:title" content="Services | Softzenix Tech"/>
+  <meta property="og:description" content="End-to-end digital services — web development, SaaS, UI/UX design, and more."/>
+  <meta property="og:url" content="https://softzenixtech.com/services.html"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%233A86FF'/><stop offset='100%25' stop-color='%238338EC'/></linearGradient></defs><rect width='100' height='100' rx='20' fill='url(%23g)'/><text y='.9em' font-size='70' x='12'>⚡</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    /* ── SERVICES-SPECIFIC ── */
+
+    /* Service Detail Sections */
+    .service-detail{padding:110px 0;position:relative;}
+    .service-detail:nth-child(even){background:var(--bg-secondary);}
+    .service-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+    .service-inner.reverse{direction:rtl;}
+    .service-inner.reverse > *{direction:ltr;}
+    .service-detail-visual{border-radius:24px;height:420px;display:flex;align-items:center;justify-content:center;font-size:6rem;position:relative;overflow:hidden;border:1px solid var(--border);}
+    .service-detail-visual::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 40% 40%,rgba(58,134,255,.18),transparent 60%);}
+    .sv-blue{background:linear-gradient(135deg,#071e38,#0d3060);}
+    .sv-purple{background:linear-gradient(135deg,#100830,#200a50);}
+    .sv-cyan{background:linear-gradient(135deg,#052520,#083830);}
+    .sv-amber{background:linear-gradient(135deg,#1a1200,#2a1f00);}
+    .sv-red{background:linear-gradient(135deg,#1a0810,#2a0c1a);}
+    .service-content .service-num{font-family:var(--font-display);font-size:5rem;font-weight:800;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:.1;line-height:1;margin-bottom:-10px;}
+    .service-content h2{font-family:var(--font-display);font-size:clamp(1.7rem,3vw,2.3rem);font-weight:800;line-height:1.2;margin-bottom:16px;}
+    .service-content p{font-size:.97rem;color:var(--text-muted);line-height:1.78;margin-bottom:20px;}
+    .service-features{display:flex;flex-direction:column;gap:12px;margin:24px 0;}
+    .feature-check{display:flex;align-items:flex-start;gap:12px;font-size:.9rem;color:var(--text-muted);}
+    .feature-check::before{content:'✓';width:22px;height:22px;border-radius:6px;background:rgba(6,214,160,.15);color:var(--cyan);font-size:.8rem;font-weight:700;display:grid;place-items:center;flex-shrink:0;margin-top:1px;}
+    .service-price-box{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;background:rgba(58,134,255,.08);border:1px solid rgba(58,134,255,.2);border-radius:12px;font-size:.85rem;color:var(--blue);font-weight:600;margin-top:8px;}
+
+    /* Tech Stack Strip */
+    .tech-stack{padding:70px 0;border-bottom:1px solid var(--border);}
+    .tech-strip{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:32px;}
+    .tech-item{display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.5;transition:opacity var(--dur);}
+    .tech-item:hover{opacity:1;}
+    .tech-item-icon{font-size:2rem;}
+    .tech-item-name{font-size:.75rem;font-weight:600;color:var(--text-muted);letter-spacing:.04em;}
+
+    /* Pricing */
+    .pricing-section{padding:110px 0;background:var(--bg-secondary);}
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px;}
+    .pricing-card{background:var(--bg-card);border:1px solid var(--border);border-radius:24px;padding:40px 36px;position:relative;overflow:hidden;transition:transform var(--dur),border-color var(--dur),box-shadow var(--dur);}
+    .pricing-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);}
+    .pricing-card.featured{border-color:var(--border-glow);background:rgba(58,134,255,.05);}
+    .pricing-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);}
+    .pricing-badge{position:absolute;top:24px;right:24px;padding:4px 12px;background:var(--grad);border-radius:99px;font-size:.7rem;font-weight:700;color:#fff;letter-spacing:.06em;}
+    .pricing-tier{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);margin-bottom:12px;}
+    .pricing-price{font-family:var(--font-display);font-size:3rem;font-weight:800;line-height:1;margin-bottom:4px;}
+    .pricing-price sup{font-size:1.4rem;vertical-align:top;margin-top:8px;}
+    .pricing-price sub{font-size:1rem;font-weight:400;color:var(--text-muted);}
+    .pricing-desc{font-size:.875rem;color:var(--text-muted);margin-bottom:28px;line-height:1.65;}
+    .pricing-divider{height:1px;background:var(--border);margin:24px 0;}
+    .pricing-features{display:flex;flex-direction:column;gap:12px;margin-bottom:32px;}
+    .pricing-feature{display:flex;align-items:center;gap:10px;font-size:.875rem;color:var(--text-muted);}
+    .pricing-feature .check{color:var(--cyan);font-size:.9rem;}
+    .pricing-feature .cross{color:var(--text-faint);font-size:.9rem;}
+    .pricing-btn{display:block;text-align:center;padding:13px;border-radius:12px;font-size:.9rem;font-weight:600;transition:all var(--dur);}
+    .pricing-btn-grad{background:var(--grad);color:#fff;}
+    .pricing-btn-grad:hover{opacity:.88;transform:translateY(-1px);}
+    .pricing-btn-outline{border:1px solid var(--border-glow);color:var(--blue);background:rgba(58,134,255,.06);}
+    .pricing-btn-outline:hover{background:rgba(58,134,255,.14);}
+
+    /* FAQ */
+    .faq-section{padding:110px 0;}
+    .faq-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;}
+    .faq-list{display:flex;flex-direction:column;gap:12px;margin-top:40px;}
+    .faq-item{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color var(--dur);}
+    .faq-item:hover{border-color:var(--border-glow);}
+    .faq-question{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;cursor:pointer;font-family:var(--font-display);font-size:.95rem;font-weight:700;gap:12px;}
+    .faq-question::after{content:'+';font-size:1.4rem;color:var(--blue);transition:transform var(--dur);flex-shrink:0;}
+    .faq-item.open .faq-question::after{transform:rotate(45deg);}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s var(--ease);}
+    .faq-item.open .faq-answer{max-height:300px;}
+    .faq-answer-inner{padding:0 24px 20px;font-size:.9rem;color:var(--text-muted);line-height:1.75;}
+
+    /* Process Detail */
+    .process-detail{padding:110px 0;background:var(--bg-secondary);}
+    .process-detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:60px;}
+    .process-detail-card{padding:32px;background:var(--bg-card);border:1px solid var(--border);border-radius:18px;display:flex;gap:20px;transition:border-color var(--dur),transform var(--dur);}
+    .process-detail-card:hover{border-color:var(--border-glow);transform:translateY(-3px);}
+    .process-icon{width:52px;height:52px;border-radius:14px;background:var(--grad);display:grid;place-items:center;font-size:1.4rem;flex-shrink:0;}
+    .process-body h3{font-family:var(--font-display);font-size:1rem;font-weight:700;margin-bottom:8px;}
+    .process-body p{font-size:.875rem;color:var(--text-muted);line-height:1.7;}
+
+    /* Responsive */
+    @media(max-width:1024px){.service-inner,.faq-grid{grid-template-columns:1fr;}.service-inner.reverse{direction:ltr;}.pricing-grid,.process-detail-grid{grid-template-columns:1fr 1fr;}}
+    @media(max-width:768px){.pricing-grid,.process-detail-grid{grid-template-columns:1fr;}.tech-strip{justify-content:center;}.service-detail-visual{height:280px;font-size:4rem;}}
+  </style>
+</head>
+<body>
+
+<header>
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Softzenix Tech Home"><div class="logo-icon" aria-hidden="true">⚡</div><span>Softzenix Tech</span></a>
+    <ul class="nav-links" role="menubar">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="contact.html" class="nav-cta">Get Started</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="projects.html">Projects</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="page-hero" aria-label="Services page hero">
+  <div class="hero-glow glow-1" aria-hidden="true"></div>
+  <div class="hero-glow glow-2" aria-hidden="true"></div>
+  <div class="container page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> / <span>Services</span></nav>
+    <p class="section-label">What We Build</p>
+    <h1>Full-Stack Digital<br><span class="gradient-text">Services & Solutions</span></h1>
+    <p>From concept to launch and beyond — we provide the expertise, execution, and ongoing support your business needs to grow in the digital-first world.</p>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<div class="tech-stack">
+  <div class="container">
+    <div class="tech-strip" aria-label="Technologies we use">
+      <div class="tech-item"><div class="tech-item-icon">⚛️</div><div class="tech-item-name">React</div></div>
+      <div class="tech-item"><div class="tech-item-icon">▲</div><div class="tech-item-name">Next.js</div></div>
+      <div class="tech-item"><div class="tech-item-icon">🟢</div><div class="tech-item-name">Node.js</div></div>
+      <div class="tech-item"><div class="tech-item-icon">🐍</div><div class="tech-item-name">Python</div></div>
+      <div class="tech-item"><div class="tech-item-icon">☁️</div><div class="tech-item-name">AWS</div></div>
+      <div class="tech-item"><div class="tech-item-icon">🐘</div><div class="tech-item-name">PostgreSQL</div></div>
+      <div class="tech-item"><div class="tech-item-icon">🎨</div><div class="tech-item-name">Figma</div></div>
+      <div class="tech-item"><div class="tech-item-icon">🐳</div><div class="tech-item-name">Docker</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICE 1: WEB DEVELOPMENT -->
+<section class="service-detail" id="web-development" aria-labelledby="web-dev-title">
+  <div class="container">
+    <div class="service-inner">
+      <div class="service-detail-visual sv-blue reveal" role="img" aria-label="Web Development illustration">🌐</div>
+      <div class="service-content reveal reveal-delay-1">
+        <div class="service-num">01</div>
+        <span class="pill pill-blue" style="margin-bottom:16px;display:inline-flex;">Web Development</span>
+        <h2 id="web-dev-title">High-Performance <span class="gradient-text">Web Applications</span></h2>
+        <p>We build websites and web apps that don't just look great — they perform. Sub-second load times, perfect Lighthouse scores, and conversion-optimized layouts that turn visitors into customers.</p>
+        <p>From marketing sites and e-commerce stores to complex internal tools and customer portals — we handle the full stack with precision.</p>
+        <div class="service-features">
+          <div class="feature-check">React, Next.js, TypeScript — modern, maintainable frontend</div>
+          <div class="feature-check">Node.js / Python backends with RESTful & GraphQL APIs</div>
+          <div class="feature-check">SEO optimization, Core Web Vitals tuning, accessibility (WCAG 2.1)</div>
+          <div class="feature-check">CI/CD pipelines, staging environments, zero-downtime deployments</div>
+          <div class="feature-check">Full CMS integration (Sanity, Contentful, WordPress headless)</div>
+          <div class="feature-check">Analytics setup, A/B testing, conversion rate optimization</div>
+        </div>
+        <div class="service-price-box">🚀 Starting from $8,000 · 4–12 week delivery</div>
+        <div style="margin-top:24px;"><a href="contact.html" class="btn-primary">Get a Web Dev Quote →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE 2: SAAS -->
+<section class="service-detail" id="saas-applications" aria-labelledby="saas-title">
+  <div class="container">
+    <div class="service-inner reverse">
+      <div class="service-detail-visual sv-purple reveal" role="img" aria-label="SaaS application illustration">☁️</div>
+      <div class="service-content reveal reveal-delay-1">
+        <div class="service-num">02</div>
+        <span class="pill pill-purple" style="margin-bottom:16px;display:inline-flex;">SaaS Applications</span>
+        <h2 id="saas-title">Scalable <span class="gradient-text">SaaS Platforms</span> Built to Grow</h2>
+        <p>Multi-tenant SaaS platforms are our specialty. We architect systems designed for thousands of concurrent users from day one — with the flexibility to evolve as your product grows.</p>
+        <p>From MVP to enterprise grade, we handle billing, onboarding, user management, permissions, and every complex piece in between.</p>
+        <div class="service-features">
+          <div class="feature-check">Multi-tenant architecture with complete data isolation</div>
+          <div class="feature-check">Stripe subscription billing, trials, usage-based pricing</div>
+          <div class="feature-check">Role-based access control (RBAC) and SSO / OAuth integration</div>
+          <div class="feature-check">Real-time features with WebSockets and event-driven microservices</div>
+          <div class="feature-check">Analytics dashboards, white-label reporting, audit logs</div>
+          <div class="feature-check">AWS / GCP infrastructure, auto-scaling, 99.9% uptime SLA</div>
+        </div>
+        <div class="service-price-box">☁️ Starting from $20,000 · 12–24 week delivery</div>
+        <div style="margin-top:24px;"><a href="contact.html" class="btn-primary">Get a SaaS Quote →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE 3: UI/UX -->
+<section class="service-detail" id="ui-ux-design" aria-labelledby="uiux-title">
+  <div class="container">
+    <div class="service-inner">
+      <div class="service-detail-visual sv-cyan reveal" role="img" aria-label="UI/UX Design illustration">🎨</div>
+      <div class="service-content reveal reveal-delay-1">
+        <div class="service-num">03</div>
+        <span class="pill pill-cyan" style="margin-bottom:16px;display:inline-flex;">UI/UX Design</span>
+        <h2 id="uiux-title">Interfaces That <span class="gradient-text">Users Love</span> — and Convert</h2>
+        <p>Great design is invisible. Users feel it through frictionless flows, intuitive navigation, and delightful micro-interactions that make your product a pleasure to use every day.</p>
+        <p>We combine rigorous user research with bold visual craft to create design systems that scale across your entire product — and your entire team.</p>
+        <div class="service-features">
+          <div class="feature-check">User research, journey mapping, and usability testing</div>
+          <div class="feature-check">Information architecture and low-fidelity wireframing</div>
+          <div class="feature-check">High-fidelity Figma prototypes with realistic interactions</div>
+          <div class="feature-check">Comprehensive design system with 200+ components</div>
+          <div class="feature-check">Dark mode, responsive layouts, and accessibility-first design</div>
+          <div class="feature-check">Developer-ready Figma handoff with annotated specs</div>
+        </div>
+        <div class="service-price-box">🎨 Starting from $5,000 · 3–8 week delivery</div>
+        <div style="margin-top:24px;"><a href="contact.html" class="btn-primary">Get a Design Quote →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE 4: API -->
+<section class="service-detail" id="api-development" aria-labelledby="api-title">
+  <div class="container">
+    <div class="service-inner reverse">
+      <div class="service-detail-visual sv-amber reveal" role="img" aria-label="API Development illustration">🔌</div>
+      <div class="service-content reveal reveal-delay-1">
+        <div class="service-num">04</div>
+        <span class="pill pill-amber" style="margin-bottom:16px;display:inline-flex;">API Development</span>
+        <h2 id="api-title">Robust APIs That <span class="gradient-text">Power Products</span></h2>
+        <p>Whether you need a public developer API, internal microservices, or third-party integrations, we build reliable, well-documented APIs that developers love to work with.</p>
+        <div class="service-features">
+          <div class="feature-check">RESTful and GraphQL API design and implementation</div>
+          <div class="feature-check">OpenAPI / Swagger documentation and developer portals</div>
+          <div class="feature-check">Webhook systems, event streaming, and async processing</div>
+          <div class="feature-check">Rate limiting, authentication (OAuth 2.0, JWT, API keys)</div>
+          <div class="feature-check">Third-party integrations (Stripe, Twilio, Slack, HubSpot, etc.)</div>
+          <div class="feature-check">Performance testing, load testing, and monitoring</div>
+        </div>
+        <div class="service-price-box">🔌 Starting from $6,000 · 3–10 week delivery</div>
+        <div style="margin-top:24px;"><a href="contact.html" class="btn-primary">Get an API Quote →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE 5: CONSULTING -->
+<section class="service-detail" id="consulting" aria-labelledby="consult-title">
+  <div class="container">
+    <div class="service-inner">
+      <div class="service-detail-visual sv-red reveal" role="img" aria-label="Tech Consulting illustration">🧭</div>
+      <div class="service-content reveal reveal-delay-1">
+        <div class="service-num">05</div>
+        <span class="pill" style="background:rgba(255,77,109,.1);border:1px solid rgba(255,77,109,.25);color:#FF4D6D;margin-bottom:16px;display:inline-flex;">Tech Consulting</span>
+        <h2 id="consult-title">Strategic Guidance for <span class="gradient-text">Critical Decisions</span></h2>
+        <p>Not every problem needs more code — sometimes it needs clearer thinking. Our consulting engagements help technical leaders and founders make better architecture, product, and team decisions.</p>
+        <div class="service-features">
+          <div class="feature-check">Technology stack evaluation and selection</div>
+          <div class="feature-check">Legacy system modernization roadmapping</div>
+          <div class="feature-check">Engineering team structure and process audits</div>
+          <div class="feature-check">Security and compliance assessment (SOC 2, GDPR)</div>
+          <div class="feature-check">Fractional CTO services for early-stage startups</div>
+          <div class="feature-check">Due diligence technical reviews for investors and acquirers</div>
+        </div>
+        <div class="service-price-box" style="border-color:rgba(255,77,109,.25);background:rgba(255,77,109,.08);color:#FF4D6D;">🧭 $250/hr · Retainer packages available</div>
+        <div style="margin-top:24px;"><a href="contact.html" class="btn-primary">Book a Consulting Call →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" aria-label="Pricing plans">
+  <div class="container">
+    <p class="section-label" style="justify-content:center;">Transparent Pricing</p>
+    <h2 class="section-title" style="text-align:center;">Investment That <span class="gradient-text">Pays for Itself</span></h2>
+    <p class="section-subtitle" style="text-align:center;margin:0 auto 0;">Every plan includes full source code ownership, documentation, and a 30-day support window post-launch.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-price"><sup>$</sup>8,000<sub> /project</sub></div>
+        <p class="pricing-desc">Perfect for startups launching their first product or businesses needing a polished web presence.</p>
+        <div class="pricing-divider"></div>
+        <div class="pricing-features">
+          <div class="pricing-feature"><span class="check">✓</span> Up to 10 pages / screens</div>
+          <div class="pricing-feature"><span class="check">✓</span> Responsive design (mobile + desktop)</div>
+          <div class="pricing-feature"><span class="check">✓</span> CMS integration</div>
+          <div class="pricing-feature"><span class="check">✓</span> SEO optimization</div>
+          <div class="pricing-feature"><span class="check">✓</span> 30-day post-launch support</div>
+          <div class="pricing-feature"><span class="cross">✗</span> Custom backend / API</div>
+          <div class="pricing-feature"><span class="cross">✗</span> Advanced integrations</div>
+        </div>
+        <a href="contact.html" class="pricing-btn pricing-btn-outline">Get Started</a>
+      </div>
+      <div class="pricing-card featured reveal reveal-delay-1">
+        <div class="pricing-badge">MOST POPULAR</div>
+        <div class="pricing-tier">Growth</div>
+        <div class="pricing-price"><sup>$</sup>20,000<sub> /project</sub></div>
+        <p class="pricing-desc">Ideal for companies building web apps, SaaS platforms, or complex digital products with custom backend logic.</p>
+        <div class="pricing-divider"></div>
+        <div class="pricing-features">
+          <div class="pricing-feature"><span class="check">✓</span> Unlimited screens & components</div>
+          <div class="pricing-feature"><span class="check">✓</span> Custom API development</div>
+          <div class="pricing-feature"><span class="check">✓</span> User auth & permissions (RBAC)</div>
+          <div class="pricing-feature"><span class="check">✓</span> Third-party integrations (up to 5)</div>
+          <div class="pricing-feature"><span class="check">✓</span> AWS / cloud infrastructure setup</div>
+          <div class="pricing-feature"><span class="check">✓</span> 90-day post-launch support</div>
+          <div class="pricing-feature"><span class="check">✓</span> Design system included</div>
+        </div>
+        <a href="contact.html" class="pricing-btn pricing-btn-grad">Start Building →</a>
+      </div>
+      <div class="pricing-card reveal reveal-delay-2">
+        <div class="pricing-tier">Enterprise</div>
+        <div class="pricing-price" style="font-size:2rem;padding-top:8px;">Custom</div>
+        <p class="pricing-desc">Full-scale SaaS platforms, enterprise software, and long-term product partnerships with dedicated team allocation.</p>
+        <div class="pricing-divider"></div>
+        <div class="pricing-features">
+          <div class="pricing-feature"><span class="check">✓</span> Everything in Growth</div>
+          <div class="pricing-feature"><span class="check">✓</span> Dedicated engineering team</div>
+          <div class="pricing-feature"><span class="check">✓</span> SLA with 99.9% uptime guarantee</div>
+          <div class="pricing-feature"><span class="check">✓</span> Multi-tenant / white-label</div>
+          <div class="pricing-feature"><span class="check">✓</span> SOC 2 / GDPR compliance support</div>
+          <div class="pricing-feature"><span class="check">✓</span> Ongoing retainer & roadmap planning</div>
+          <div class="pricing-feature"><span class="check">✓</span> Fractional CTO access</div>
+        </div>
+        <a href="contact.html" class="pricing-btn pricing-btn-outline">Let's Talk →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS DETAIL -->
+<section class="process-detail" aria-label="Our delivery process">
+  <div class="container">
+    <p class="section-label">How We Work</p>
+    <h2 class="section-title">A Process Designed for <span class="gradient-text">Predictable Success</span></h2>
+    <div class="process-detail-grid">
+      <div class="process-detail-card reveal">
+        <div class="process-icon" aria-hidden="true">🔭</div>
+        <div class="process-body"><h3>Discovery Sprint</h3><p>Week 1–2: Stakeholder interviews, competitive analysis, user research synthesis, and a detailed project charter before we write a single line of code.</p></div>
+      </div>
+      <div class="process-detail-card reveal reveal-delay-1">
+        <div class="process-icon" aria-hidden="true">📐</div>
+        <div class="process-body"><h3>Architecture & Design</h3><p>Week 2–4: System design, database schema, API contracts, and Figma designs finalized and signed off before development begins.</p></div>
+      </div>
+      <div class="process-detail-card reveal reveal-delay-2">
+        <div class="process-icon" aria-hidden="true">🛠️</div>
+        <div class="process-body"><h3>Agile Development</h3><p>2-week sprints with working demos at the end of each. You always know what's been built, what's next, and why.</p></div>
+      </div>
+      <div class="process-detail-card reveal reveal-delay-3">
+        <div class="process-icon" aria-hidden="true">🧪</div>
+        <div class="process-body"><h3>QA & Testing</h3><p>Automated unit, integration, and E2E tests. Manual QA on real devices. Performance audits, accessibility checks, and security scans.</p></div>
+      </div>
+      <div class="process-detail-card reveal">
+        <div class="process-icon" aria-hidden="true">🚀</div>
+        <div class="process-body"><h3>Launch & Deployment</h3><p>Zero-downtime deployments with instant rollback capability. Full monitoring, alerting, and a war-room-style launch call to support go-live.</p></div>
+      </div>
+      <div class="process-detail-card reveal reveal-delay-1">
+        <div class="process-icon" aria-hidden="true">📈</div>
+        <div class="process-body"><h3>Post-Launch Optimization</h3><p>Analytics review, performance tuning, user feedback analysis, and an optimization roadmap delivered 30 days after launch.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" aria-label="Frequently asked questions">
+  <div class="container">
+    <div class="faq-grid">
+      <div>
+        <p class="section-label">FAQ</p>
+        <h2 class="section-title">Questions We <span class="gradient-text">Get All the Time</span></h2>
+        <p class="section-subtitle">Can't find your answer here? <a href="contact.html" style="color:var(--blue);">Drop us a message</a> — we respond within 24 hours.</p>
+      </div>
+      <div class="faq-list" role="list">
+        <div class="faq-item" role="listitem">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">How long does a typical project take?</div>
+          <div class="faq-answer"><div class="faq-answer-inner">It depends on scope. A marketing website typically takes 4–8 weeks. A SaaS MVP runs 12–20 weeks. We'll give you a detailed timeline during the discovery phase — and we stick to it.</div></div>
+        </div>
+        <div class="faq-item" role="listitem">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">Do you take on small projects?</div>
+          <div class="faq-answer"><div class="faq-answer-inner">Our minimum engagement is $8,000. We focus on projects where we can make a genuine impact — not one-page brochure sites. If your budget is smaller, we're happy to recommend other options.</div></div>
+        </div>
+        <div class="faq-item" role="listitem">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">Who owns the code when we're done?</div>
+          <div class="faq-answer"><div class="faq-answer-inner">You do — 100%. Upon final payment, all intellectual property, code, designs, and assets transfer fully to you. No licensing fees, no lock-in.</div></div>
+        </div>
+        <div class="faq-item" role="listitem">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">Can you work with our existing team?</div>
+          <div class="faq-answer"><div class="faq-answer-inner">Absolutely. We often embed alongside in-house teams, contributing specific expertise while respecting your existing stack, processes, and culture.</div></div>
+        </div>
+        <div class="faq-item" role="listitem">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">Do you offer maintenance and support?</div>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes. Every project includes a free 30-day support window. We also offer ongoing retainer plans covering bug fixes, feature updates, security patches, and performance monitoring.</div></div>
+        </div>
+        <div class="faq-item" role="listitem">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">What's your payment structure?</div>
+          <div class="faq-answer"><div class="faq-answer-inner">Typically 30% upfront to begin, 40% at design/architecture sign-off, and 30% upon final delivery. For ongoing retainers, we invoice monthly in advance.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" aria-label="Call to action">
+  <div class="container" style="position:relative;z-index:1;">
+    <p class="section-label" style="justify-content:center;">Get Started</p>
+    <h2>Have a Project in Mind?<br><span class="gradient-text">Let's Make It Real.</span></h2>
+    <p>Tell us about your project and get a detailed proposal within 3 business days — no commitment required.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn-primary">Get a Free Quote →</a>
+      <a href="projects.html" class="btn-secondary">See Our Portfolio</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" aria-label="Softzenix Tech"><div class="logo-icon" aria-hidden="true">⚡</div><span>Softzenix Tech</span></a>
+        <p>Building modern, scalable digital solutions that help ambitious businesses grow faster and smarter.</p>
+        <div class="footer-social" aria-label="Social media">
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter">𝕏</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">in</a>
+          <a href="https://github.com" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">gh</a>
+          <a href="mailto:softzenixtech@gmail.com" class="social-btn" aria-label="Email">✉</a>
+        </div>
+      </div>
+      <nav class="footer-col" aria-label="Company"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+      <nav class="footer-col" aria-label="Services"><h4>Services</h4><ul><li><a href="#web-development">Web Development</a></li><li><a href="#saas-applications">SaaS Applications</a></li><li><a href="#ui-ux-design">UI/UX Design</a></li><li><a href="#api-development">API Development</a></li><li><a href="#consulting">Consulting</a></li></ul></nav>
+      <nav class="footer-col" aria-label="Contact"><h4>Get In Touch</h4><ul><li><a href="mailto:softzenixtech@gmail.com">softzenixtech@gmail.com</a></li><li><a href="https://softzenixtech.com">softzenixtech.com</a></li><li><a href="contact.html">Get a Quote</a></li></ul></nav>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> <span>Softzenix Tech</span>. All rights reserved.</p>
+      <p>Built with ❤️ for ambitious businesses worldwide.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-question').setAttribute('aria-expanded','false'); });
+    if(!isOpen){ item.classList.add('open'); q.setAttribute('aria-expanded','true'); }
+  });
+  q.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); q.click(); }});
+});
+</script>
+</body>
+</html>

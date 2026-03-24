@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects | Softzenix Tech — Portfolio & Case Studies</title>
+  <meta name="description" content="Browse Softzenix Tech's portfolio of web applications, SaaS platforms, and UI/UX design projects. Real case studies with measurable results."/>
+  <meta name="keywords" content="Softzenix Tech projects, portfolio, case studies, web app examples, SaaS development portfolio, UI UX design work"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://softzenixtech.com/projects.html"/>
+  <meta property="og:title" content="Projects | Softzenix Tech Portfolio"/>
+  <meta property="og:description" content="Real projects, measurable results — explore our portfolio of web apps, SaaS platforms, and design systems."/>
+  <meta property="og:url" content="https://softzenixtech.com/projects.html"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%233A86FF'/><stop offset='100%25' stop-color='%238338EC'/></linearGradient></defs><rect width='100' height='100' rx='20' fill='url(%23g)'/><text y='.9em' font-size='70' x='12'>⚡</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    /* ── PROJECTS-SPECIFIC ── */
+
+    /* Filter Bar */
+    .filter-section{padding:50px 0 0;}
+    .filter-bar{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:0;}
+    .filter-btn{padding:9px 24px;border-radius:99px;font-size:.85rem;font-weight:600;background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);transition:all var(--dur);}
+    .filter-btn:hover,.filter-btn.active{background:var(--grad);border-color:transparent;color:#fff;}
+
+    /* Grid */
+    .projects-section{padding:60px 0 110px;}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+    .project-card{background:var(--bg-card);border:1px solid var(--border);border-radius:22px;overflow:hidden;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform var(--dur),border-color var(--dur),box-shadow var(--dur);display:flex;flex-direction:column;}
+    .project-card:hover{transform:translateY(-7px);border-color:var(--border-glow);box-shadow:var(--shadow);}
+    .project-card.hidden{display:none;}
+
+    .project-thumb{height:200px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+    .project-thumb-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;transition:transform .5s var(--ease);}
+    .project-card:hover .project-thumb-inner{transform:scale(1.1);}
+    .project-cat-badge{position:absolute;top:14px;right:14px;padding:4px 12px;border-radius:99px;font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff;}
+    .project-year{position:absolute;bottom:14px;left:14px;padding:3px 10px;border-radius:99px;font-size:.7rem;font-weight:600;background:rgba(0,0,0,.4);color:rgba(255,255,255,.7);backdrop-filter:blur(8px);}
+
+    .project-body{padding:28px;flex:1;display:flex;flex-direction:column;}
+    .project-body h3{font-family:var(--font-display);font-size:1.12rem;font-weight:700;margin-bottom:10px;}
+    .project-body p{font-size:.875rem;color:var(--text-muted);line-height:1.72;flex:1;margin-bottom:20px;}
+    .project-metrics{display:flex;gap:18px;margin-bottom:20px;flex-wrap:wrap;}
+    .metric-chip{background:var(--input-bg);border:1px solid var(--border);border-radius:10px;padding:8px 12px;text-align:center;}
+    .metric-chip .m-val{font-family:var(--font-display);font-size:1rem;font-weight:800;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+    .metric-chip .m-lbl{font-size:.68rem;color:var(--text-faint);margin-top:2px;}
+    .project-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--border);padding-top:18px;}
+    .project-tech{display:flex;gap:6px;flex-wrap:wrap;}
+    .tech-dot{padding:3px 10px;background:var(--input-bg);border:1px solid var(--border);border-radius:99px;font-size:.7rem;color:var(--text-muted);}
+    .btn-demo{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:var(--grad);border-radius:9px;font-size:.8rem;font-weight:600;color:#fff;white-space:nowrap;flex-shrink:0;transition:opacity var(--dur),transform var(--dur);}
+    .btn-demo:hover{opacity:.85;transform:translateY(-1px);}
+
+    /* Featured Case Study */
+    .case-study-section{padding:110px 0;background:var(--bg-secondary);}
+    .case-study-inner{display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:start;}
+    .case-study-thumb{border-radius:24px;height:440px;display:flex;align-items:center;justify-content:center;font-size:7rem;border:1px solid var(--border);position:relative;overflow:hidden;}
+    .case-study-thumb::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 35% 35%,rgba(58,134,255,.2),transparent 55%);}
+    .cs-bg-1{background:linear-gradient(140deg,#050f1e,#0d2040);}
+    .cs-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+    .case-study-text h2{font-family:var(--font-display);font-size:clamp(1.6rem,2.8vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:16px;}
+    .case-study-text p{font-size:.95rem;color:var(--text-muted);line-height:1.78;margin-bottom:20px;}
+    .cs-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:24px 0;}
+    .cs-metric{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:18px;}
+    .cs-metric .val{font-family:var(--font-display);font-size:1.8rem;font-weight:800;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:4px;}
+    .cs-metric .lbl{font-size:.78rem;color:var(--text-faint);}
+
+    /* No results */
+    .no-results{text-align:center;padding:80px 20px;color:var(--text-muted);display:none;}
+    .no-results.show{display:block;}
+
+    /* Responsive */
+    @media(max-width:1024px){.projects-grid{grid-template-columns:1fr 1fr;}.case-study-inner{grid-template-columns:1fr;}}
+    @media(max-width:768px){.projects-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<header>
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Softzenix Tech Home"><div class="logo-icon" aria-hidden="true">⚡</div><span>Softzenix Tech</span></a>
+    <ul class="nav-links" role="menubar">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="contact.html" class="nav-cta">Get Started</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="projects.html">Projects</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="page-hero" aria-label="Projects page hero">
+  <div class="hero-glow glow-1" aria-hidden="true"></div>
+  <div class="hero-glow glow-2" aria-hidden="true"></div>
+  <div class="container page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> / <span>Projects</span></nav>
+    <p class="section-label">Our Portfolio</p>
+    <h1>Work That <span class="gradient-text">Speaks for Itself</span></h1>
+    <p>120+ projects shipped across 6+ years. Each one is a story of collaboration, craft, and measurable impact — here are some of our favorites.</p>
+  </div>
+</section>
+
+<!-- FILTER + GRID -->
+<div class="filter-section">
+  <div class="container">
+    <div class="filter-bar" role="group" aria-label="Filter projects">
+      <button class="filter-btn active" data-filter="all" aria-pressed="true">All Projects</button>
+      <button class="filter-btn" data-filter="web" aria-pressed="false">Web</button>
+      <button class="filter-btn" data-filter="saas" aria-pressed="false">SaaS</button>
+      <button class="filter-btn" data-filter="ui" aria-pressed="false">UI / UX</button>
+      <button class="filter-btn" data-filter="api" aria-pressed="false">API / Backend</button>
+    </div>
+  </div>
+</div>
+
+<section class="projects-section" aria-label="Projects list">
+  <div class="container">
+    <div class="projects-grid" id="projectsGrid" aria-live="polite"></div>
+    <div class="no-results" id="noResults" aria-live="polite"><p style="font-size:1.1rem;">No projects in this category yet.</p><p style="font-size:.9rem;margin-top:8px;">Check back soon — we're always shipping.</p></div>
+  </div>
+</section>
+
+<!-- FEATURED CASE STUDY -->
+<section class="case-study-section" aria-label="Featured case study">
+  <div class="container">
+    <p class="section-label">Deep Dive</p>
+    <h2 class="section-title">Featured <span class="gradient-text">Case Study</span></h2>
+    <div class="case-study-inner" style="margin-top:50px;">
+      <div class="case-study-thumb cs-bg-1 reveal" role="img" aria-label="FlowDesk CRM screenshot">📊</div>
+      <div class="reveal reveal-delay-1">
+        <div class="cs-meta">
+          <span class="pill pill-purple">SaaS Platform</span>
+          <span class="pill pill-blue">Full-Stack</span>
+          <span class="pill" style="background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);">2023</span>
+        </div>
+        <h2>FlowDesk CRM: Building a 10,000-User SaaS in 8 Months</h2>
+        <p>FlowDesk approached us with a vision and a tight runway. They needed a fully featured CRM — pipeline management, email automation, white-label reporting, and billing — shipped to market before their Series A closed.</p>
+        <p>We assembled a dedicated team of 5 engineers, 2 designers, and a product strategist. In 8 months, we went from wireframes to a production SaaS serving 10,000 active users with a 99.97% uptime record.</p>
+        <div class="cs-metrics">
+          <div class="cs-metric"><div class="val">10k+</div><div class="lbl">Active users at launch</div></div>
+          <div class="cs-metric"><div class="val">8mo</div><div class="lbl">Concept to production</div></div>
+          <div class="cs-metric"><div class="val">99.97%</div><div class="lbl">Uptime — first 6 months</div></div>
+          <div class="cs-metric"><div class="val">4.9★</div><div class="lbl">App store rating</div></div>
+        </div>
+        <a href="contact.html" class="btn-primary">Start a Similar Project →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTERS -->
+<div class="counter-section" aria-label="Portfolio stats">
+  <div class="container">
+    <div class="counters-grid">
+      <div class="counter-item reveal"><div class="counter-value" data-target="120" data-suffix="+">0</div><div class="counter-label">Projects Shipped</div></div>
+      <div class="counter-item reveal reveal-delay-1"><div class="counter-value" data-target="85" data-suffix="+">0</div><div class="counter-label">Happy Clients</div></div>
+      <div class="counter-item reveal reveal-delay-2"><div class="counter-value" data-target="98" data-suffix="%">0</div><div class="counter-label">On-Time Delivery</div></div>
+      <div class="counter-item reveal reveal-delay-3"><div class="counter-value" data-target="94" data-suffix="%">0</div><div class="counter-label">Client Return Rate</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section" aria-label="Call to action">
+  <div class="container" style="position:relative;z-index:1;">
+    <p class="section-label" style="justify-content:center;">Next Up</p>
+    <h2>Could Your Project Be<br><span class="gradient-text">Featured Here Next?</span></h2>
+    <p>We're selective about the work we take on — not because we're gatekeeping, but because we want every project to succeed. Let's see if we're a match.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn-primary">Discuss Your Project →</a>
+      <a href="services.html" class="btn-secondary">Explore Our Services</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" aria-label="Softzenix Tech"><div class="logo-icon" aria-hidden="true">⚡</div><span>Softzenix Tech</span></a>
+        <p>Building modern, scalable digital solutions that help ambitious businesses grow faster and smarter.</p>
+        <div class="footer-social" aria-label="Social media">
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter">𝕏</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">in</a>
+          <a href="https://github.com" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">gh</a>
+          <a href="mailto:softzenixtech@gmail.com" class="social-btn" aria-label="Email">✉</a>
+        </div>
+      </div>
+      <nav class="footer-col" aria-label="Company"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+      <nav class="footer-col" aria-label="Services"><h4>Services</h4><ul><li><a href="services.html">Web Development</a></li><li><a href="services.html">SaaS Applications</a></li><li><a href="services.html">UI/UX Design</a></li><li><a href="services.html">API Development</a></li><li><a href="services.html">Consulting</a></li></ul></nav>
+      <nav class="footer-col" aria-label="Contact"><h4>Get In Touch</h4><ul><li><a href="mailto:softzenixtech@gmail.com">softzenixtech@gmail.com</a></li><li><a href="https://softzenixtech.com">softzenixtech.com</a></li><li><a href="contact.html">Get a Quote</a></li></ul></nav>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> <span>Softzenix Tech</span>. All rights reserved.</p>
+      <p>Built with ❤️ for ambitious businesses worldwide.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// ── PROJECTS DATA ──
+const PROJECTS = [
+  { id:1, title:'FlowDesk CRM', desc:'Full-featured CRM SaaS with pipeline management, email automation, white-label reporting, and Stripe billing. Scaled from 0 to 10,000 users in 8 months.', category:'saas', emoji:'📊', bg:'linear-gradient(135deg,#0A2540,#1a3a5c)', badgeColor:'#8338EC', badge:'SaaS', year:'2023', tech:['React','Node.js','PostgreSQL','AWS'], metrics:[{v:'10k+',l:'Users'},{v:'8mo',l:'Delivery'},{v:'4.9★',l:'Rating'}], demo:'#' },
+  { id:2, title:'Momentum Landing', desc:'High-converting marketing website for a fintech startup. Sub-2s load, A/B tested layouts, driven 38% increase in trial signups vs the previous site.', category:'web', emoji:'🚀', bg:'linear-gradient(135deg,#051822,#0d2d4a)', badgeColor:'#3A86FF', badge:'Web', year:'2024', tech:['Next.js','Tailwind','Framer'], metrics:[{v:'38%',l:'Signup lift'},{v:'1.8s',l:'Load time'},{v:'99',l:'Lighthouse'}], demo:'#' },
+  { id:3, title:'Zentia Design System', desc:'Comprehensive UI component library for a healthcare platform — 200+ accessible components, dark/light themes, and a full Storybook documentation portal.', category:'ui', emoji:'🎨', bg:'linear-gradient(135deg,#0d1a2d,#1a2a40)', badgeColor:'#06D6A0', badge:'UI/UX', year:'2023', tech:['Figma','Storybook','React'], metrics:[{v:'200+',l:'Components'},{v:'AA',l:'WCAG Level'},{v:'4×',l:'Dev speed'}], demo:'#' },
+  { id:4, title:'Pulse Analytics', desc:'Real-time BI SaaS with customizable dashboards, ML-powered predictions, and white-label reporting for mid-market and enterprise clients across 12 industries.', category:'saas', emoji:'📈', bg:'linear-gradient(135deg,#0A2540,#1e1040)', badgeColor:'#8338EC', badge:'SaaS', year:'2024', tech:['Python','React','AWS','Redis'], metrics:[{v:'$2M',l:'ARR year 1'},{v:'<200ms',l:'Query time'},{v:'99.9%',l:'Uptime'}], demo:'#' },
+  { id:5, title:'Nexus E-Commerce', desc:'Headless e-commerce storefront with blazing-fast search, personalized recommendations, and a conversion-optimized checkout that reduced cart abandonment by 22%.', category:'web', emoji:'🛍️', bg:'linear-gradient(135deg,#081a2e,#0f2540)', badgeColor:'#3A86FF', badge:'Web', year:'2023', tech:['Next.js','Shopify','Stripe'], metrics:[{v:'22%',l:'Less abandonment'},{v:'3.2×',l:'Revenue lift'},{v:'0.9s',l:'LCP'}], demo:'#' },
+  { id:6, title:'Aura Wellness App', desc:'End-to-end UX design for a mindfulness app — user research, journey mapping, information architecture, interaction design, and full Figma handoff to the dev team.', category:'ui', emoji:'✨', bg:'linear-gradient(135deg,#0a1f30,#0d2840)', badgeColor:'#06D6A0', badge:'UI/UX', year:'2022', tech:['Figma','ProtoPie','Maze'], metrics:[{v:'4.8★',l:'Post-redesign'},{v:'31%',l:'Session length'},{v:'24%',l:'Retention lift'}], demo:'#' },
+  { id:7, title:'ConnectAPI Platform', desc:'Public developer API serving 500 integrations — RESTful and GraphQL endpoints, interactive docs portal, sandbox environment, and a 99.95% availability record.', category:'api', emoji:'🔌', bg:'linear-gradient(135deg,#100828,#1a1045)', badgeColor:'#FFB703', badge:'API', year:'2024', tech:['Node.js','GraphQL','Redis','k6'], metrics:[{v:'500+',l:'Integrations'},{v:'<20ms',l:'P99 latency'},{v:'99.95%',l:'Availability'}], demo:'#' },
+  { id:8, title:'Gridline Dashboard', desc:'Internal operations dashboard replacing a legacy spreadsheet workflow. Real-time data, drag-and-drop reporting, and role-based access for a 300-person logistics company.', category:'web', emoji:'📋', bg:'linear-gradient(135deg,#08201a,#0d3028)', badgeColor:'#3A86FF', badge:'Web', year:'2022', tech:['React','D3.js','Node.js'], metrics:[{v:'80%',l:'Time saved'},{v:'300',l:'Daily users'},{v:'0 bugs',l:'3mo post-launch'}], demo:'#' },
+  { id:9, title:'Vault Auth Service', desc:'Zero-trust authentication microservice handling 50M+ monthly verifications — OAuth 2.0, MFA, SSO, and anomaly detection with sub-40ms auth latency at scale.', category:'api', emoji:'🔐', bg:'linear-gradient(135deg,#1a0808,#2a1010)', badgeColor:'#FFB703', badge:'API', year:'2023', tech:['Go','Redis','Postgres','JWT'], metrics:[{v:'50M+',l:'Monthly auths'},{v:'<40ms',l:'Auth latency'},{v:'0',l:'Security breaches'}], demo:'#' },
+];
+
+function renderProjects(filter){
+  const grid = document.getElementById('projectsGrid');
+  const noRes = document.getElementById('noResults');
+  const filtered = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.category === filter);
+  grid.innerHTML = '';
+  if(!filtered.length){ noRes.classList.add('show'); return; }
+  noRes.classList.remove('show');
+  filtered.forEach((p,i) => {
+    const card = document.createElement('article');
+    card.className = 'project-card';
+    card.style.animationDelay = `${i*0.07}s`;
+    card.setAttribute('aria-label', `${p.title} — ${p.badge} project`);
+    card.innerHTML = `
+      <div class="project-thumb" style="background:${p.bg};" aria-hidden="true">
+        <div class="project-thumb-inner">${p.emoji}</div>
+        <span class="project-cat-badge" style="background:${p.badgeColor};">${p.badge}</span>
+        <span class="project-year">${p.year}</span>
+      </div>
+      <div class="project-body">
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+        <div class="project-metrics">${p.metrics.map(m=>`<div class="metric-chip"><div class="m-val">${m.v}</div><div class="m-lbl">${m.l}</div></div>`).join('')}</div>
+        <div class="project-footer">
+          <div class="project-tech">${p.tech.map(t=>`<span class="tech-dot">${t}</span>`).join('')}</div>
+          <a href="${p.demo}" class="btn-demo" aria-label="View live demo of ${p.title}">Live Demo ↗</a>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+  // re-trigger scroll reveal
+  document.querySelectorAll('.project-card').forEach(el => {
+    el.style.opacity='0'; el.style.transform='translateY(24px)'; el.style.transition='opacity .5s ease, transform .5s ease';
+    setTimeout(()=>{ el.style.opacity='1'; el.style.transform='translateY(0)'; },50);
+  });
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>{ b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
+    btn.classList.add('active'); btn.setAttribute('aria-pressed','true');
+    renderProjects(btn.dataset.filter);
+  });
+});
+
+renderProjects('all');
+</script>
+</body>
+</html>
